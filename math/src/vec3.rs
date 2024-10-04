@@ -14,8 +14,16 @@ impl Vec3 {
         a.x * b.x + a.y * b.y + a.z * b.z
     }
 
-    // need mat3 impl first
-    // pub fn cross(a: Vec3, b: Vec3) -> Vec3 {}
+    // i = (a.y * b.z) - (b.y * a.z)
+    // j = (a.x * b.z) - (b.x * a.z)
+    // k = (a.x * b.y) - (b.x * a.y)
+    pub fn cross(a: Vec3, b: Vec3) -> Vec3 {
+        let x = (a.y * b.z) - (b.y * a.z);
+        let y = (a.x * b.z) - (b.x * a.z);
+        let z = (a.x * b.y) - (b.x * a.y);
+
+        Vec3 { x, y, z }
+    }
 
     pub fn magnitude(self) -> f32 {
         let a = self.x * self.x;
