@@ -1,3 +1,4 @@
+#[derive(Debug, PartialEq, Clone, Copy)]
 pub struct Vec2 {
     pub x: f32,
     pub y: f32,
@@ -16,6 +17,14 @@ impl Vec2 {
         let a = self.x * self.x;
         let b = self.y * self.y;
         f32::sqrt(a + b)
+    }
+
+    pub fn normalise(self) -> Vec2 {
+        let m = self.magnitude();
+        Vec2 {
+            x: self.x / m,
+            y: self.y / m,
+        }
     }
 }
 
