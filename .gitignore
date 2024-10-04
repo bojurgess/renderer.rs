@@ -1,0 +1,8 @@
+debug/
+target/
+
+renderer/Cargo.lock
+
+**/*.rs.bk
+
+*.pdb
