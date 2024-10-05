@@ -1,3 +1,5 @@
+use crate::Mat3;
+
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub struct Vec3 {
     pub x: f32,
@@ -60,6 +62,18 @@ impl std::ops::Add<Vec3> for Vec3 {
     }
 }
 
+impl std::ops::Add<f32> for Vec3 {
+    type Output = Vec3;
+
+    fn add(self, b: f32) -> Vec3 {
+        Vec3 {
+            x: self.x + b,
+            y: self.y + b,
+            z: self.z + b,
+        }
+    }
+}
+
 impl std::ops::Sub<Vec3> for Vec3 {
     type Output = Vec3;
 
@@ -68,6 +82,18 @@ impl std::ops::Sub<Vec3> for Vec3 {
             x: self.x - b.x,
             y: self.y - b.y,
             z: self.z - b.z,
+        }
+    }
+}
+
+impl std::ops::Sub<f32> for Vec3 {
+    type Output = Vec3;
+
+    fn sub(self, b: f32) -> Vec3 {
+        Vec3 {
+            x: self.x - b,
+            y: self.y - b,
+            z: self.z - b,
         }
     }
 }
@@ -84,6 +110,30 @@ impl std::ops::Mul<f32> for Vec3 {
     }
 }
 
+impl std::ops::Mul<Mat3> for Vec3 {
+    type Output = Vec3;
+
+    fn mul(self, b: Mat3) -> Vec3 {
+        let x = Vec3::dot(self, Vec3::new(b.c0.x, b.c1.x, b.c2.x));
+        let y = Vec3::dot(self, Vec3::new(b.c0.y, b.c1.y, b.c2.y));
+        let z = Vec3::dot(self, Vec3::new(b.c0.z, b.c1.z, b.c2.z));
+
+        Vec3 { x, y, z }
+    }
+}
+
+impl std::ops::Mul<Vec3> for Vec3 {
+    type Output = Vec3;
+
+    fn mul(self, b: Vec3) -> Vec3 {
+        Vec3 {
+            x: self.x * b.x,
+            y: self.y * b.y,
+            z: self.z * b.z,
+        }
+    }
+}
+
 impl std::ops::Div<f32> for Vec3 {
     type Output = Vec3;
 
@@ -92,6 +142,30 @@ impl std::ops::Div<f32> for Vec3 {
             x: self.x / b,
             y: self.y / b,
             z: self.z / b,
+        }
+    }
+}
+
+impl std::ops::Div<Mat3> for Vec3 {
+    type Output = Vec3;
+
+    fn div(self, b: Mat3) -> Vec3 {
+        let x = Vec3::dot(self, Vec3::new(b.c0.x, b.c0.y, b.c0.z));
+        let y = Vec3::dot(self, Vec3::new(b.c1.x, b.c1.y, b.c1.z));
+        let z = Vec3::dot(self, Vec3::new(b.c2.x, b.c2.y, b.c2.z));
+
+        Vec3 { x, y, z }
+    }
+}
+
+impl std::ops::Div<Vec3> for Vec3 {
+    type Output = Vec3;
+
+    fn div(self, b: Vec3) -> Vec3 {
+        Vec3 {
+            x: self.x / b.x,
+            y: self.y / b.y,
+            z: self.z / b.z,
         }
     }
 }
