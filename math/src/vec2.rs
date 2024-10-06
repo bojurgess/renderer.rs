@@ -71,3 +71,14 @@ impl std::ops::Div<f32> for Vec2 {
         }
     }
 }
+
+impl std::ops::Neg for Vec2 {
+    type Output = Vec2;
+
+    fn neg(self) -> Vec2 {
+        Vec2 {
+            x: -self.x,
+            y: -self.y,
+        }
+    }
+}

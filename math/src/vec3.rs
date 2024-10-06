@@ -169,3 +169,15 @@ impl std::ops::Div<Vec3> for Vec3 {
         }
     }
 }
+
+impl std::ops::Neg for Vec3 {
+    type Output = Vec3;
+
+    fn neg(self) -> Vec3 {
+        Vec3 {
+            x: -self.x,
+            y: -self.y,
+            z: -self.z,
+        }
+    }
+}

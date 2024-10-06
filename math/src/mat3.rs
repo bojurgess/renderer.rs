@@ -275,3 +275,15 @@ impl std::ops::Add<Mat3> for Mat3 {
         }
     }
 }
+
+impl std::ops::Neg for Mat3 {
+    type Output = Mat3;
+
+    fn neg(self) -> Mat3 {
+        Mat3 {
+            c0: -self.c0,
+            c1: -self.c1,
+            c2: -self.c2,
+        }
+    }
+}
