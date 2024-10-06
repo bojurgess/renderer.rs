@@ -1,5 +1,6 @@
 use window::Window;
 
+mod buffer;
 mod window;
 
 fn main() {
